@@ -29,7 +29,7 @@ addContact({
 // Prints all contacts in the array
 // Shows the id, name, email, and phone for each
 
-function listContacts(): void {
+function listContacts(){
     if (contacts.length === 0) {
         console.log("No contacts to display.");
         return;
@@ -47,11 +47,11 @@ function listContacts(): void {
 
 listContacts(); 
 
-// Function 3: findByName(name: string): Contact[] 
-// Takes a name as a parameter
-// Searches the contacts array for matches
-// Returns an array of matching contacts
-// Prints how many were found
+// // Function 3: findByName(name: string): Contact[] 
+// // Takes a name as a parameter
+// // Searches the contacts array for matches
+// // Returns an array of matching contacts
+// // Prints how many were found
 
 function findByName(name: string): Contact[] {
     const matches: Contact[] = contacts.filter(contact =>
@@ -70,14 +70,14 @@ results.forEach(contact => {
     console.log(`ID: ${contact.id} - Name: ${contact.name}`);
 });
 
-// Function 4: removeById(id: number): boolean
-// Takes an id as a parameter
-// Finds and removes that contact from the array
-// Returns true if removed
-// Returns false if not found
-// Prints a message either way
+// // Function 4: removeById(id: number): boolean
+// // Takes an id as a parameter
+// // Finds and removes that contact from the array
+// // Returns true if removed
+// // Returns false if not found
+// // Prints a message either way
 
-function removeById(id: number): boolean {
+function removeById(id: number){
     const index = contacts.findIndex(contact => contact.id === id);
 
     if (index !== -1) {
@@ -90,36 +90,36 @@ function removeById(id: number): boolean {
     }
 }
 
-// STEP 5: Test your code
+// // STEP 5: Test your code
 
-// Add 3 different contacts
-addContact({ id: 4, name: "Ediberta Max", email: "edi.max@gmail.com", phone: "90807060" });
-addContact({ id: 2, name: "Carlos Mendoza", phone: "12345678" });
-addContact({ id: 3, name: "Ana López", email: "ana.lopez@gmail.com" });
+// // Add 3 different contacts
+// addContact({ id: 4, name: "Ediberta Max", email: "edi.max@gmail.com", phone: "90807060" });
+// addContact({ id: 2, name: "Carlos Mendoza", phone: "12345678" });
+// addContact({ id: 3, name: "Ana López", email: "ana.lopez@gmail.com" });
 
-// List all contacts
-listContacts();
+// // List all contacts
+// listContacts();
 
-// Search for a contact by name
-const foundContacts = findByName("Ediberta");
-console.log("Search results:");
-foundContacts.forEach(contact => {
-    console.log(`ID: ${contact.id} - Name: ${contact.name}`);
-});
+// // Search for a contact by name
+// const foundContacts = findByName("Ediberta");
+// console.log("Search results:");
+// foundContacts.forEach(contact => {
+//     console.log(`ID: ${contact.id} - Name: ${contact.name}`);
+// });
 
-// Remove a contact by ID
-removeById(2);
+// // Remove a contact by ID
+// removeById(2);
 
-// List all contacts again
-listContacts();
+// // List all contacts again
+// listContacts();
 
-// STEP 6: Run it
+// // STEP 6: Run it
 
-// Checklist
-// All 4 functions written
-// Added 3 contacts
-// Listed all contacts
-// Searched by name
-// Removed one contact
-// Listed again (should show 2 contacts)
-// No TypeScript errors
+// // Checklist
+// // All 4 functions written
+// // Added 3 contacts
+// // Listed all contacts
+// // Searched by name
+// // Removed one contact
+// // Listed again (should show 2 contacts)
+// // No TypeScript errors

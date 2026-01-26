@@ -40,3 +40,27 @@ function listContacts() {
 }
 
 listContacts();
+
+// Function 3: findByName(name: string): Contact[] 
+// Takes a name as a parameter
+// Searches the contacts array for matches
+// Returns an array of matching contacts
+// Prints how many were found
+
+
+function findByName(name: string): Contact[] {
+    const matches: Contact[] = contacts.filter(contact => contact.name.toLowerCase().includes(name.toLowerCase())
+);
+console.log(`Found${matches.length} contact(s) with the name "${name}".`);
+return matches;
+}
+
+const results = findByName("Edi");
+
+
+console.log("Search results:");
+
+results.forEach(contact =>{
+console.log(`ID:${contact.id} - Name: ${contact.name}`)
+});
+
