@@ -160,31 +160,31 @@
 
 // Make three functions that each wait 1 second and then call the next callback, printing 'Step 1 done', 'Step 2 done', 'Step 3 done' in order. 
 
-type Callback = () => void;
+// type Callback = () => void;
 
-function stepOne(callback: Callback): void {
-  setTimeout(() => {
-    console.log("Step 1 done");
-    callback();
-  }, 1000);
-}
+// function stepOne(callback: Callback): void {
+//   setTimeout(() => {
+//     console.log("Step 1 done");
+//     callback();
+//   }, 1000);
+// }
 
-function stepTwo(callback: Callback): void {
-  setTimeout(() => {
-    console.log("Step 2 done");
-    callback();
-  }, 1000);
-}
+// function stepTwo(callback: Callback): void {
+//   setTimeout(() => {
+//     console.log("Step 2 done");
+//     callback();
+//   }, 1000);
+// }
 
-function stepThree(callback: Callback): void {
-  setTimeout(() => {
-    console.log("Step 3 done");
-  }, 1000);
-}
+// function stepThree(callback: Callback): void {
+//   setTimeout(() => {
+//     console.log("Step 3 done");
+//   }, 1000);
+// }
 
 
-stepOne(() => {
-  stepTwo(() => {
-    stepThree(() => {});
-  });
-});
+// stepOne(() => {
+//   stepTwo(() => {
+//     stepThree(() => {});
+//   });
+// });
