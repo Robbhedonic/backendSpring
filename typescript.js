@@ -120,6 +120,9 @@ var wrapInArray = function (item) {
 };
 var stringArray = wrapInArray("Guacamaya");
 console.log(stringArray);
+// Exercise 2: 
+// Write a generic function firstItem<T> that takes an array and returns the first item. 
+// Test with [1, 2, 3] and ["a", "b", "c"]. 
 var firstItem = function (arr) {
     return arr[0];
 };
@@ -127,3 +130,13 @@ var firstN = firstItem([1, 3, 7]);
 var firstS = firstItem(["Snake", "Bird", "Hawaii"]);
 console.log(firstN);
 console.log(firstS);
+// Exercise 3: 
+// Write a generic function swap<T> that takes two items and returns them in reverse order inside an array. 
+// Example: swap("hello", "world") → ["world", "hello"] 
+var swap = function (a, b) {
+    return [b, a];
+};
+var swappedStrings = swap("hello", "world");
+var swappedNumbers = swap(1, 2);
+console.log(swappedStrings);
+console.log(swappedNumbers);
