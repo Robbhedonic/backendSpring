@@ -1,3 +1,9 @@
+// TO RUN THE CODE :
+//                  tsc callback_excercises.ts
+//                  node ccallback_excercises.js
+
+
+
 // Challenge 1
 /*  Create a function addTwo that accepts one input and adds 2 to it. */
 
@@ -10,7 +16,7 @@ const addTwo = (num: number): number => {
 console.log(addTwo(3));
 console.log(addTwo(10));
 
-
+// DONE ✅
 
 // Challenge 2
 /* 
@@ -26,8 +32,10 @@ const addS = (word: string): string => {
 console.log(addS("pizza"));
 console.log(addS("bagel"));
 
-// // ________________________________________________________________________________________________
-// // Challenge 3
+// DONE ✅
+
+// ________________________________________________________________________________________________
+// Challenge 3
 /* 
 Create a function called map that takes two inputs:
 1. An array of numbers (a list of numbers)
@@ -47,9 +55,9 @@ const map = (array: number[], callback: (num: number) => number): number[] => {
 
 console.log(map([1, 2, 3] as number[], addTwo));
 
+// DONE ✅
 
-
-// // ________________________________________________________________________________________________
+// ________________________________________________________________________________________________
 // Challenge 4
 /* 
 The function forEach takes an array and a callback, and runs the callback on each element of the array. 
@@ -71,8 +79,8 @@ console.log(alphabet);
 
 // should output abcd
 
-
-// // ________________________________________________________________________________________________
+// DONE ✅
+// ________________________________________________________________________________________________
 // Challenge 5
 /* 
 Rebuild your map function, this time instead of using a for loop, use your own forEach function that you just defined. 
@@ -96,136 +104,275 @@ console.log(mapWith([1, 2, 3], addTwo));
 
 // should output [ 3, 4, 5 ]
 
+// DONE ✅
 
-// // Challenge 6
-// /* 
-// The function reduce takes an array and reduces the elements to a single value. 
-// For example it can sum all the numbers, multiply them, 
-// or any operation that you can put into a function.
-// */
+// Challenge 6
+/* 
+The function reduce takes an array and reduces the elements to a single value. 
+For example it can sum all the numbers, multiply them, 
+or any operation that you can put into a function.
+*/
+function forEacH<T>(array: T[], callback: (item: T) => void): void {
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i]!);
+  }
+}
 
-// const nums = [4, 1, 3];
-// const add = function (a, b) {
-//   return a + b;
-// };
-// console.log(reduce(nums, add, 0))
+function reduce<T, U>(array: T[], callback: (accumulator: U, item:T) => U, initialValue: U): U {
+    let accumulator: U = initialValue;
+    forEacH(array, (item: T)=>  {
+        accumulator= callback(accumulator, item);
+    });
+    return accumulator;
+}
 
-// //should output 8
+const nums = [4, 1, 3];
+const add = function (a: number, b: number) {
+  return a + b;
+};
+console.log(reduce(nums, add, 0))
 
-// // ________________________________________________________________________________________________
-// // Challenge 7
-// /* Construct a function intersection that compares input arrays and returns a new array with elements found in all of the inputs. BONUS: Use reduce!
-//  */
-// console.log(
-//   intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20])
-// );
-// // should log: [5, 15]
+//should output 8
 
-// // ________________________________________________________________________________________________
-// // Challenge 8
-// /* 
-// Construct a function union that compares input arrays and returns a new array that contains all elements. If there are duplicate elements, only add it once to the new array. Preserve the order of the elements starting from the first element of the first input array. BONUS: Use reduce!
-// */
 
-// console.log(union([5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]));
-// // should log: [5, 10, 15, 88, 1, 7, 100]
+// DONE ✅
+// ________________________________________________________________________________________________
+// Challenge 7
+/* Construct a function intersection that compares input arrays and returns a new array with elements found in all of the inputs. BONUS: Use reduce!
+ */
 
-// // ________________________________________________________________________________________________
-// // Challenge 9
-// /* 
-// Construct a function objOfMatches that accepts two arrays and a callback. 
-// objOfMatches will build an object and return it. 
-// To build the object, objOfMatches will test each element of the first array using the callback to see if the output matches the corresponding element (by index) of the second array. 
-// If there is a match, the element from the first array becomes a key in an object, and the element from the second array becomes the corresponding value.
-// */
+function intersection(...arrays: number[][]): number[]{
+    return arrays.reduce((accumaltor, current)=> {
 
-// console.log(
-//   objOfMatches(
-//     ["hi", "howdy", "bye", "later", "hello"],
-//     ["HI", "Howdy", "BYE", "LATER", "hello"],
-//     function (str) {
-//       return str.toUpperCase();
-//     }
-//   )
-// );
+        return accumaltor.filter(item => current.includes(item));
+    });
+}
+console.log(
+  intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20])
+);
+// should log: [5, 15]
 
-// // should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
+// DONE ✅
 
-// // ________________________________________________________________________________________________
-// // Challenge 10
-// /* 
-// Construct a function multiMap that will accept two arrays: an array of values and an array of callbacks. 
-// multiMap will return an object whose keys match the elements in the array of values. 
-// The corresponding values that are assigned to the keys will be arrays consisting of outputs from the array of callbacks, where the input to each callback is the key.
-// */
+// ________________________________________________________________________________________________
+// Challenge 8
+/* 
+Construct a function union that compares input arrays and returns a new array that contains all elements. If there are duplicate elements, only add it once to the new array. Preserve the order of the elements starting from the first element of the first input array. BONUS: Use reduce!
+*/
 
-// console.log(
-//   multiMap(
-//     ["catfood", "glue", "beer"],
-//     [
-//       function (str) {
-//         return str.toUpperCase();
-//       },
-//       function (str) {
-//         return str[0].toUpperCase() + str.slice(1).toLowerCase();
-//       },
-//       function (str) {
-//         return str + str;
-//       },
-//     ]
-//   )
-// );
+function union(...arrays: number[][]): number[] {
+  return arrays.reduce((accumaltor, current) => {
+    current.forEach(item => {
+      if (!accumaltor.includes(item)) {
+        accumaltor.push(item);
+      }
+    });
+    return accumaltor;
+  }, []);
+}
 
-// // should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
 
-// // ________________________________________________________________________________________________
-// // Challenge 11
-// /* 
-// Construct a function objectFilter that accepts an object as the first parameter and a callback function as the second parameter. 
-// objectFilter will return a new object. 
-// The new object will contain only the properties from the input object such that the property's value is equal to the property's key passed into the callback.
-// */
+console.log(union([5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]));
+// should log: [5, 10, 15, 88, 1, 7, 100]
 
-// const cities = {
-//   London: "LONDON",
-//   LA: "Los Angeles",
-//   Paris: "PARIS",
-// };
-// console.log(objectFilter(cities, (city) => city.toUpperCase()));
+// DONE ✅
 
-// // Should log { London: 'LONDON', Paris: 'PARIS'}
+// ________________________________________________________________________________________________
+// Challenge 9
+/* 
+Construct a function objOfMatches that accepts two arrays and a callback. 
+objOfMatches will build an object and return it. 
+To build the object, objOfMatches will test each element of the first array using the callback to see if the output matches the corresponding element (by index) of the second array. 
+If there is a match, the element from the first array becomes a key in an object, and the element from the second array becomes the corresponding value.
+*/
 
-// // ________________________________________________________________________________________________
-// // Challenge 12
-// /* Create a function majority that accepts an array and a callback. 
-// The callback will return either true or false. majority will iterate through the array and perform the callback on each element until it can be determined if the majority of the return values from the callback are true. 
-// If the number of true returns is equal to the number of false returns, majority should return false.
-//  */
+function objOfMatches(
+  array1: string[],
+  array2: string[],
+  callback: (str: string) => string
+): Record<string, string> {
 
-// const isOdd = function (num) {
-//   return num % 2 === 1;
-// };
-// console.log(majority([1, 2, 3, 4, 5, 7, 9, 11], isOdd));
-// // should log: true
+  const result: Record<string, string> = {};
 
-// console.log(majority([2, 3, 4, 5], isOdd)); 
-// // should log: false
+  for (let i = 0; i < array1.length; i++) {
+    const a = array1[i];
+    const b = array2[i];
 
-// // ________________________________________________________________________________________________
-// // Challenge 13
+    if (a !== undefined && b !== undefined && callback(a) === b) {
+      result[a] = b;
+    }
+  }
+
+  return result;
+}
+
+
+console.log(
+  objOfMatches(
+    ["hi", "howdy", "bye", "later", "hello"],
+    ["HI", "Howdy", "BYE", "LATER", "hello"],
+    function (str) {
+      return str.toUpperCase();
+    }
+  )
+);
+
+// should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
+// DONE ✅
+
+
+// ________________________________________________________________________________________________
+// Challenge 10
+/* 
+Construct a function multiMap that will accept two arrays: an array of values and an array of callbacks. 
+multiMap will return an object whose keys match the elements in the array of values. 
+The corresponding values that are assigned to the keys will be arrays consisting of outputs from the array of callbacks, where the input to each callback is the key.
+*/
+
+function multiMap<T extends string, R>(
+  values: T[],
+  callbacks: Array<(value: T) => R>
+): Record<string, R[]> {
+  const result: Record<string, R[]> = {};
+
+  for (const value of values) {
+    result[value] = callbacks.map(cb => cb(value));
+  }
+
+  return result;
+}
+
+
+
+
+console.log(
+  multiMap(
+    ["catfood", "glue", "beer"],
+    [
+      function (str) {
+        return str.toUpperCase();
+      },
+      function (str) {
+        return str[0]!.toUpperCase() + str.slice(1).toLowerCase();
+      },
+      function (str) {
+        return str + str;
+      },
+    ]
+  )
+);
+
+// should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
+
+
+// DONE ✅
+// ________________________________________________________________________________________________
+// Challenge 11
+/* 
+Construct a function objectFilter that accepts an object as the first parameter and a callback function as the second parameter. 
+objectFilter will return a new object. 
+The new object will contain only the properties from the input object such that the property's value is equal to the property's key passed into the callback.
+*/
+
+type StringObject = {[key: string]: string};
+
+function objectFilter(
+    obj: StringObject, callback:(value: string) => string): StringObject{
+        const result: StringObject = {};
+
+        for (const key in obj){
+            const value = obj[key];
+
+            if(value !== undefined && callback(value) === key){
+                result[key] = value;
+            }
+        }
+        return result;
+    }
+
+
+
+const cities = {
+  London: "LONDON",
+  LA: "Los Angeles",
+  Paris: "PARIS",
+};
+console.log(objectFilter(cities, (city) => city.toUpperCase()));
+
+// Should log { London: 'LONDON', Paris: 'PARIS'}
+
+
+// DONE ✅
+
+// ________________________________________________________________________________________________
+// Challenge 12
+/* Create a function majority that accepts an array and a callback. 
+The callback will return either true or false. majority will iterate through the array and perform the callback on each element until it can be determined if the majority of the return values from the callback are true. 
+If the number of true returns is equal to the number of false returns, majority should return false.
+ */
+
+
+function majority(array: any[], callback: (item:any)=> boolean): boolean{
+    let trueCount = 0;
+    let falseCount = 0;
+
+    for(const item of array){
+        if(callback(item)){
+            trueCount++;
+        }else{
+            falseCount++;
+        }
+    }
+
+    return trueCount > falseCount;
+}
+
+
+
+const isOdd = function (num: number) {
+  return num % 2 === 1;
+};
+console.log(majority([1, 2, 3, 4, 5, 7, 9, 11], isOdd));
+// should log: true
+
+console.log(majority([2, 3, 4, 5], isOdd)); 
+// should log: false
+
+
+// DONE ✅
+// ________________________________________________________________________________________________
+// Challenge 13
 // /* Create a function prioritize that accepts an array and a callback. The callback will return either true or false. prioritize will iterate through the array and perform the callback on each element, and return a new array, where all the elements that yielded a return value of true come first in the array, and the rest of the elements come second. */
 
-// const startsWithS = function (str) {
-//   return str[0] === "s" || str[0] === "S";
-// };
-// console.log(
-//   prioritize(
-//     ["curb", "rickandmorty", "seinfeld", "sunny", "friends"],
-//     startsWithS
-//   )
-// );
 
-// // should log: ["seinfeld", "sunny", "curb", "rickandmorty", "friends"];
+function prioritize(array: any, callback: any) {
+  const trueArr = [];
+  const falseArr = [];
+
+  for (const item of array) {
+    if (callback(item)) {
+      trueArr.push(item);
+    } else {
+      falseArr.push(item);
+    }
+  }
+
+  return [...trueArr, ...falseArr];
+}
+
+
+
+const startsWithS = function (str: any) {
+  return str[0] === "s" || str[0] === "S";
+};
+console.log(
+  prioritize(
+    ["curb", "rickandmorty", "seinfeld", "sunny", "friends"],
+    startsWithS
+  )
+);
+
+// should log: ["seinfeld", "sunny", "curb", "rickandmorty", "friends"];
 
 // // ________________________________________________________________________________________________
 // // Challenge 14

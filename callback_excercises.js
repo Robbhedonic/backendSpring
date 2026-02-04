@@ -71,74 +71,118 @@ function mapWith(array, callback) {
 console.log(mapWith([1, 2, 3], addTwo));
 // should output [ 3, 4, 5 ]
 // // Challenge 6
-// /* 
-// The function reduce takes an array and reduces the elements to a single value. 
-// For example it can sum all the numbers, multiply them, 
-// or any operation that you can put into a function.
-// */
-// const nums = [4, 1, 3];
-// const add = function (a, b) {
-//   return a + b;
-// };
-// console.log(reduce(nums, add, 0))
-// //should output 8
-// // ________________________________________________________________________________________________
-// // Challenge 7
-// /* Construct a function intersection that compares input arrays and returns a new array with elements found in all of the inputs. BONUS: Use reduce!
-//  */
-// console.log(
-//   intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20])
-// );
-// // should log: [5, 15]
-// // ________________________________________________________________________________________________
-// // Challenge 8
-// /* 
-// Construct a function union that compares input arrays and returns a new array that contains all elements. If there are duplicate elements, only add it once to the new array. Preserve the order of the elements starting from the first element of the first input array. BONUS: Use reduce!
-// */
-// console.log(union([5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]));
-// // should log: [5, 10, 15, 88, 1, 7, 100]
-// // ________________________________________________________________________________________________
-// // Challenge 9
-// /* 
-// Construct a function objOfMatches that accepts two arrays and a callback. 
-// objOfMatches will build an object and return it. 
-// To build the object, objOfMatches will test each element of the first array using the callback to see if the output matches the corresponding element (by index) of the second array. 
-// If there is a match, the element from the first array becomes a key in an object, and the element from the second array becomes the corresponding value.
-// */
-// console.log(
-//   objOfMatches(
-//     ["hi", "howdy", "bye", "later", "hello"],
-//     ["HI", "Howdy", "BYE", "LATER", "hello"],
-//     function (str) {
-//       return str.toUpperCase();
-//     }
-//   )
-// );
-// // should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
-// // ________________________________________________________________________________________________
-// // Challenge 10
-// /* 
-// Construct a function multiMap that will accept two arrays: an array of values and an array of callbacks. 
-// multiMap will return an object whose keys match the elements in the array of values. 
-// The corresponding values that are assigned to the keys will be arrays consisting of outputs from the array of callbacks, where the input to each callback is the key.
-// */
-// console.log(
-//   multiMap(
-//     ["catfood", "glue", "beer"],
-//     [
-//       function (str) {
-//         return str.toUpperCase();
-//       },
-//       function (str) {
-//         return str[0].toUpperCase() + str.slice(1).toLowerCase();
-//       },
-//       function (str) {
-//         return str + str;
-//       },
-//     ]
-//   )
-// );
-// // should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
+/*
+The function reduce takes an array and reduces the elements to a single value.
+For example it can sum all the numbers, multiply them,
+or any operation that you can put into a function.
+*/
+function forEacH(array, callback) {
+    for (var i = 0; i < array.length; i++) {
+        callback(array[i]);
+    }
+}
+function reduce(array, callback, initialValue) {
+    var accumulator = initialValue;
+    forEacH(array, function (item) {
+        accumulator = callback(accumulator, item);
+    });
+    return accumulator;
+}
+var nums = [4, 1, 3];
+var add = function (a, b) {
+    return a + b;
+};
+console.log(reduce(nums, add, 0));
+//should output 8
+// ________________________________________________________________________________________________
+// Challenge 7
+/* Construct a function intersection that compares input arrays and returns a new array with elements found in all of the inputs. BONUS: Use reduce!
+ */
+function intersection() {
+    var arrays = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        arrays[_i] = arguments[_i];
+    }
+    return arrays.reduce(function (accumaltor, current) {
+        return accumaltor.filter(function (item) { return current.includes(item); });
+    });
+}
+console.log(intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]));
+// should log: [5, 15]
+// ________________________________________________________________________________________________
+// Challenge 8
+/*
+Construct a function union that compares input arrays and returns a new array that contains all elements. If there are duplicate elements, only add it once to the new array. Preserve the order of the elements starting from the first element of the first input array. BONUS: Use reduce!
+*/
+function union() {
+    var arrays = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        arrays[_i] = arguments[_i];
+    }
+    return arrays.reduce(function (accumaltor, current) {
+        current.forEach(function (item) {
+            if (!accumaltor.includes(item)) {
+                accumaltor.push(item);
+            }
+        });
+        return accumaltor;
+    }, []);
+}
+console.log(union([5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]));
+// should log: [5, 10, 15, 88, 1, 7, 100]
+// ________________________________________________________________________________________________
+// Challenge 9
+/*
+Construct a function objOfMatches that accepts two arrays and a callback.
+objOfMatches will build an object and return it.
+To build the object, objOfMatches will test each element of the first array using the callback to see if the output matches the corresponding element (by index) of the second array.
+If there is a match, the element from the first array becomes a key in an object, and the element from the second array becomes the corresponding value.
+*/
+function objOfMatches(array1, array2, callback) {
+    var result = {};
+    for (var i = 0; i < array1.length; i++) {
+        var a = array1[i];
+        var b = array2[i];
+        if (a !== undefined && b !== undefined && callback(a) === b) {
+            result[a] = b;
+        }
+    }
+    return result;
+}
+console.log(objOfMatches(["hi", "howdy", "bye", "later", "hello"], ["HI", "Howdy", "BYE", "LATER", "hello"], function (str) {
+    return str.toUpperCase();
+}));
+// should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
+// ________________________________________________________________________________________________
+// Challenge 10
+/*
+Construct a function multiMap that will accept two arrays: an array of values and an array of callbacks.
+multiMap will return an object whose keys match the elements in the array of values.
+The corresponding values that are assigned to the keys will be arrays consisting of outputs from the array of callbacks, where the input to each callback is the key.
+*/
+function multiMap(values, callbacks) {
+    var result = {};
+    var _loop_1 = function (value) {
+        result[value] = callbacks.map(function (cb) { return cb(value); });
+    };
+    for (var _i = 0, values_1 = values; _i < values_1.length; _i++) {
+        var value = values_1[_i];
+        _loop_1(value);
+    }
+    return result;
+}
+console.log(multiMap(["catfood", "glue", "beer"], [
+    function (str) {
+        return str.toUpperCase();
+    },
+    function (str) {
+        return str[0].toUpperCase() + str.slice(1).toLowerCase();
+    },
+    function (str) {
+        return str + str;
+    },
+]));
+// should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
 // // ________________________________________________________________________________________________
 // // Challenge 11
 // /* 
