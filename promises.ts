@@ -43,6 +43,6 @@ const fetchAdviceById = (id: number) => {
  })
  .catch((error: unknown)=> {
     console.error("Error fetching advice", error)
- })
+ });
 }
 fetchAdviceById(1000);
