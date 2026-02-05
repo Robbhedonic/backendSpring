@@ -1,3 +1,15 @@
+// TO RUN THE CODE :
+//                  tsc callback_excercises.ts
+//                  node ccallback_excercises.js
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 // Challenge 1
 /*  Create a function addTwo that accepts one input and adds 2 to it. */
 var addTwo = function (num) {
@@ -7,6 +19,7 @@ var addTwo = function (num) {
 // To check if you've completed it, uncomment these console.logs!
 console.log(addTwo(3));
 console.log(addTwo(10));
+// DONE ✅
 // Challenge 2
 /*
 Create a function addS that accepts one input and adds an "s" to it.
@@ -18,8 +31,9 @@ var addS = function (word) {
 // uncomment these to check your work
 console.log(addS("pizza"));
 console.log(addS("bagel"));
-// // ________________________________________________________________________________________________
-// // Challenge 3
+// DONE ✅
+// ________________________________________________________________________________________________
+// Challenge 3
 /*
 Create a function called map that takes two inputs:
 1. An array of numbers (a list of numbers)
@@ -34,7 +48,8 @@ var map = function (array, callback) {
     return result;
 };
 console.log(map([1, 2, 3], addTwo));
-// // ________________________________________________________________________________________________
+// DONE ✅
+// ________________________________________________________________________________________________
 // Challenge 4
 /*
 The function forEach takes an array and a callback, and runs the callback on each element of the array.
@@ -52,7 +67,8 @@ forEach(letters, function (char) {
 });
 console.log(alphabet);
 // should output abcd
-// // ________________________________________________________________________________________________
+// DONE ✅
+// ________________________________________________________________________________________________
 // Challenge 5
 /*
 Rebuild your map function, this time instead of using a for loop, use your own forEach function that you just defined.
@@ -70,7 +86,8 @@ function mapWith(array, callback) {
 }
 console.log(mapWith([1, 2, 3], addTwo));
 // should output [ 3, 4, 5 ]
-// // Challenge 6
+// DONE ✅
+// Challenge 6
 /*
 The function reduce takes an array and reduces the elements to a single value.
 For example it can sum all the numbers, multiply them,
@@ -94,6 +111,7 @@ var add = function (a, b) {
 };
 console.log(reduce(nums, add, 0));
 //should output 8
+// DONE ✅
 // ________________________________________________________________________________________________
 // Challenge 7
 /* Construct a function intersection that compares input arrays and returns a new array with elements found in all of the inputs. BONUS: Use reduce!
@@ -109,6 +127,7 @@ function intersection() {
 }
 console.log(intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]));
 // should log: [5, 15]
+// DONE ✅
 // ________________________________________________________________________________________________
 // Challenge 8
 /*
@@ -130,6 +149,7 @@ function union() {
 }
 console.log(union([5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]));
 // should log: [5, 10, 15, 88, 1, 7, 100]
+// DONE ✅
 // ________________________________________________________________________________________________
 // Challenge 9
 /*
@@ -153,6 +173,7 @@ console.log(objOfMatches(["hi", "howdy", "bye", "later", "hello"], ["HI", "Howdy
     return str.toUpperCase();
 }));
 // should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
+// DONE ✅
 // ________________________________________________________________________________________________
 // Challenge 10
 /*
@@ -182,95 +203,153 @@ console.log(multiMap(["catfood", "glue", "beer"], [
         return str + str;
     },
 ]));
-// should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
-// // ________________________________________________________________________________________________
-// // Challenge 11
-// /* 
-// Construct a function objectFilter that accepts an object as the first parameter and a callback function as the second parameter. 
-// objectFilter will return a new object. 
-// The new object will contain only the properties from the input object such that the property's value is equal to the property's key passed into the callback.
-// */
-// const cities = {
-//   London: "LONDON",
-//   LA: "Los Angeles",
-//   Paris: "PARIS",
-// };
-// console.log(objectFilter(cities, (city) => city.toUpperCase()));
-// // Should log { London: 'LONDON', Paris: 'PARIS'}
-// // ________________________________________________________________________________________________
-// // Challenge 12
-// /* Create a function majority that accepts an array and a callback. 
-// The callback will return either true or false. majority will iterate through the array and perform the callback on each element until it can be determined if the majority of the return values from the callback are true. 
-// If the number of true returns is equal to the number of false returns, majority should return false.
-//  */
-// const isOdd = function (num) {
-//   return num % 2 === 1;
-// };
-// console.log(majority([1, 2, 3, 4, 5, 7, 9, 11], isOdd));
-// // should log: true
-// console.log(majority([2, 3, 4, 5], isOdd)); 
-// // should log: false
-// // ________________________________________________________________________________________________
-// // Challenge 13
+function objectFilter(obj, callback) {
+    var result = {};
+    for (var key in obj) {
+        var value = obj[key];
+        if (value !== undefined && callback(value) === key) {
+            result[key] = value;
+        }
+    }
+    return result;
+}
+var cities = {
+    London: "LONDON",
+    LA: "Los Angeles",
+    Paris: "PARIS",
+};
+console.log(objectFilter(cities, function (city) { return city.toUpperCase(); }));
+// Should log { London: 'LONDON', Paris: 'PARIS'}
+// DONE ✅
+// ________________________________________________________________________________________________
+// Challenge 12
+/* Create a function majority that accepts an array and a callback.
+The callback will return either true or false. majority will iterate through the array and perform the callback on each element until it can be determined if the majority of the return values from the callback are true.
+If the number of true returns is equal to the number of false returns, majority should return false.
+ */
+function majority(array, callback) {
+    var trueCount = 0;
+    var falseCount = 0;
+    for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
+        var item = array_1[_i];
+        if (callback(item)) {
+            trueCount++;
+        }
+        else {
+            falseCount++;
+        }
+    }
+    return trueCount > falseCount;
+}
+var isOdd = function (num) {
+    return num % 2 === 1;
+};
+console.log(majority([1, 2, 3, 4, 5, 7, 9, 11], isOdd));
+// should log: true
+console.log(majority([2, 3, 4, 5], isOdd));
+// should log: false
+// DONE ✅
+// ________________________________________________________________________________________________
+// Challenge 13
 // /* Create a function prioritize that accepts an array and a callback. The callback will return either true or false. prioritize will iterate through the array and perform the callback on each element, and return a new array, where all the elements that yielded a return value of true come first in the array, and the rest of the elements come second. */
-// const startsWithS = function (str) {
-//   return str[0] === "s" || str[0] === "S";
-// };
-// console.log(
-//   prioritize(
-//     ["curb", "rickandmorty", "seinfeld", "sunny", "friends"],
-//     startsWithS
-//   )
-// );
-// // should log: ["seinfeld", "sunny", "curb", "rickandmorty", "friends"];
+function prioritize(array, callback) {
+    var trueArr = [];
+    var falseArr = [];
+    for (var _i = 0, array_2 = array; _i < array_2.length; _i++) {
+        var item = array_2[_i];
+        if (callback(item)) {
+            trueArr.push(item);
+        }
+        else {
+            falseArr.push(item);
+        }
+    }
+    return __spreadArray(__spreadArray([], trueArr, true), falseArr, true);
+}
+var startsWithS = function (str) {
+    return str[0] === "s" || str[0] === "S";
+};
+console.log(prioritize(["curb", "rickandmorty", "seinfeld", "sunny", "friends"], startsWithS));
+// should log: ["seinfeld", "sunny", "curb", "rickandmorty", "friends"];
 // // ________________________________________________________________________________________________
-// // Challenge 14
-// /* 
-// Create a function countBy that accepts an array and a callback, and returns an object. 
-// countBy will iterate through the array and perform the callback on each element. 
-// Each return value from the callback will be saved as a key on the object. 
-// The value associated with each key will be the number of times that particular return value was returned.
-// */
-// console.log(
-//   countBy([1, 2, 3, 4, 5], function (num) {
-//     if (num % 2 === 0) return "even";
-//     else return "odd";
-//   })
-// ); // should log: { odd: 3, even: 2 }
-// // ________________________________________________________________________________________________
-// // Challenge 15
-// /* 
-// Create a function groupBy that accepts an array and a callback, and returns an object. 
-// groupBy will iterate through the array and perform the callback on each element. 
-// Each return value from the callback will be saved as a key on the object. 
-// The value associated with each key will be an array consisting of all the elements that resulted in that return value when passed into the callback.
-// */
-// const decimals = [1.3, 2.1, 2.4];
-// const floored = function (num) {
-//   return Math.floor(num);
-// };
-// console.log(groupBy(decimals, floored));
-// // should log: { 1: [1.3], 2: [2.1, 2.4] }
-// // ________________________________________________________________________________________________
-// // Challenge 16
-// /* 
-// Create a function goodKeys that accepts an object and a callback. 
-// The callback will return either true or false. 
-// goodKeys will iterate through the object and perform the callback on each value. 
-// goodKeys will then return an array consisting only the keys whose associated values yielded a true return value from the callback.
-// */
-// const sunny = {
-//   mac: "priest",
-//   dennis: "calculating",
-//   charlie: "birdlaw",
-//   dee: "bird",
-//   frank: "warthog",
-// };
-// const startsWithBird = function (str) {
-//   return str.slice(0, 4).toLowerCase() === "bird";
-// };
-// console.log(goodKeys(sunny, startsWithBird));
-// // should log: ['charlie', 'dee']
+// Challenge 14
+/*
+Create a function countBy that accepts an array and a callback, and returns an object.
+countBy will iterate through the array and perform the callback on each element.
+Each return value from the callback will be saved as a key on the object.
+The value associated with each key will be the number of times that particular return value was returned.
+*/
+function countBy(array, callback) {
+    var _a;
+    var result = {};
+    for (var _i = 0, array_3 = array; _i < array_3.length; _i++) {
+        var item = array_3[_i];
+        var key = callback(item);
+        result[key] = ((_a = result[key]) !== null && _a !== void 0 ? _a : 0) + 1;
+    }
+    return result;
+}
+console.log(countBy([1, 2, 3, 4, 5], function (num) {
+    if (num % 2 === 0)
+        return "even";
+    else
+        return "odd";
+})); // should log: { odd: 3, even: 2 }
+// ________________________________________________________________________________________________
+// Challenge 15
+/*
+Create a function groupBy that accepts an array and a callback, and returns an object.
+groupBy will iterate through the array and perform the callback on each element.
+Each return value from the callback will be saved as a key on the object.
+The value associated with each key will be an array consisting of all the elements that resulted in that return value when passed into the callback.
+*/
+function groupBy(array, callback) {
+    var result = {};
+    for (var _i = 0, array_4 = array; _i < array_4.length; _i++) {
+        var item = array_4[_i];
+        var key = String(callback(item));
+        if (!result[key]) {
+            result[key] = [];
+        }
+        result[key].push(item);
+    }
+    return result;
+}
+var decimals = [1.3, 2.1, 2.4];
+var floored = function (num) {
+    return Math.floor(num);
+};
+console.log(groupBy(decimals, floored));
+// should log: { 1: [1.3], 2: [2.1, 2.4] }
+// ________________________________________________________________________________________________
+// Challenge 16
+/*
+Create a function goodKeys that accepts an object and a callback.
+The callback will return either true or false.
+goodKeys will iterate through the object and perform the callback on each value.
+goodKeys will then return an array consisting only the keys whose associated values yielded a true return value from the callback.
+*/
+function goodKeys(obj, callback) {
+    var result = [];
+    for (var key in obj) {
+        if (callback(obj[key])) {
+            result.push(key);
+        }
+    }
+    return result;
+}
+var sunny = {
+    mac: "priest",
+    dennis: "calculating",
+    charlie: "birdlaw",
+    dee: "bird",
+    frank: "warthog",
+};
+var startsWithBird = function (str) {
+    return str.slice(0, 4).toLowerCase() === "bird";
+};
+console.log(goodKeys(sunny, startsWithBird));
+// should log: ['charlie', 'dee']
 // // ________________________________________________________________________________________________
 // // Challenge 17
 // /* 
