@@ -36,6 +36,20 @@ type Drink = {
 type DrinkResponse = {
    drinks: Drink[];
 };
+
+
+
+const flipcoin = (): Promise<"Win"> => {
+    return new Promise((resolve, reject)=> {
+        const result = Math.random();
+        if(result > 0.5){
+            resolve("Win")
+        } else {
+            reject("lose");
+        }
+    });
+};
+
 const fetchAdviceById = (id: string)=> {
     const promises: Promise<void> = fetch(
         `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
@@ -65,6 +79,16 @@ const fetchAdviceById = (id: string)=> {
       console.error("Error fetching drink", error);
     });
 };
-fetchAdviceById("11007");
+
+
+
+flipcoin()
+    .then(()=> {
+        console.log("You win the coin flip!");
+        return fetchAdviceById("11007");
+    })
+    .catch(()=> {
+        console.log("You lost the flip. No Drink for yeahhh")
+    });
 
    

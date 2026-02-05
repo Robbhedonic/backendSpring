@@ -5,6 +5,17 @@
 //         let result = Math.random();
 //         if(result > 0.5){
 //             resolve("You win!")
+var flipcoin = function () {
+    return new Promise(function (resolve, reject) {
+        var result = Math.random();
+        if (result > 0.5) {
+            resolve("Win");
+        }
+        else {
+            reject("lose");
+        }
+    });
+};
 var fetchAdviceById = function (id) {
     var promises = fetch("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=".concat(id))
         .then(function (response) {
@@ -22,7 +33,7 @@ var fetchAdviceById = function (id) {
         var iba = (_b = drink === null || drink === void 0 ? void 0 : drink.strIBA) !== null && _b !== void 0 ? _b : "Unknown IBA";
         var instructions = drink === null || drink === void 0 ? void 0 : drink.strInstructions;
         console.log("Drink (ID: ".concat(drink === null || drink === void 0 ? void 0 : drink.idDrink, "):"));
-        console.log("\uD83C\uDF79 Drink (ID: ".concat(idDrink, ")"));
+        console.log("Drink (ID: ".concat(idDrink, ")"));
         console.log("Name:", name);
         console.log("Category:", category);
         console.log("IBA:", iba);
@@ -32,4 +43,11 @@ var fetchAdviceById = function (id) {
         console.error("Error fetching drink", error);
     });
 };
-fetchAdviceById("11007");
+flipcoin()
+    .then(function () {
+    console.log("You win the coin flip!");
+    return fetchAdviceById("11007");
+})
+    .catch(function () {
+    console.log("You lost the flip. No Drink for yeahhh");
+});
