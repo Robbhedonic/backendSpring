@@ -47,6 +47,7 @@ var _this = this;
 //         }
 //     });
 // };
+// Part 1: Refactoring Your Own Promise with Async/Await  
 var flipCoin = function () {
     return new Promise(function (resolve, reject) {
         var outcome = Math.random() > 0.5;
@@ -73,3 +74,29 @@ var coinFlipResult = function () { return __awaiter(_this, void 0, void 0, funct
     });
 }); };
 coinFlipResult();
+var fetchAdvice = function () { return __awaiter(_this, void 0, void 0, function () {
+    var response, data, error_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 3, , 4]);
+                return [4 /*yield*/, fetch('https://api.adviceslip.com/advice')];
+            case 1:
+                response = _a.sent();
+                if (!response.ok) {
+                    throw new Error("HTTP error! status: ".concat(response.status));
+                }
+                return [4 /*yield*/, response.json()];
+            case 2:
+                data = _a.sent();
+                console.log(data.slip.advice);
+                return [3 /*break*/, 4];
+            case 3:
+                error_2 = _a.sent();
+                console.log("Error fetching advice:", error_2);
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
+fetchAdvice();
