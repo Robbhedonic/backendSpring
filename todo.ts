@@ -2,8 +2,6 @@
 import * as readline from "readline";
 // import readline from "node:readline";
 
-
-
 // store todo in array
 type Todo = {
     id: number;

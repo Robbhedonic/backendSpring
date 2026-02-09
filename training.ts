@@ -7,7 +7,7 @@ interface Contact{
     tags?: string[];
 }
 
-let contacts: Contact[] = [];
+const contacts: Contact[] = [];
 
 
 function addContact(contact: Contact){

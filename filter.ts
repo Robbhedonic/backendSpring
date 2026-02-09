@@ -75,29 +75,29 @@ const users: User[] = [
 // Question 1: Filter students who have a scholarship
 // Your code here:
 
-// console.log(students.filter(student => student.grade >= 85));
+console.log(students.filter(student => student.grade >= 85));
 
 // // Question 2: Filter products that are in stock
 // // Use worksheetProducts instead of products
 // // Your code here:
 
-// console.log(worksheetProducts.filter(product => product.inStock === true));
+console.log(worksheetProducts.filter(product => product.inStock === true));
 
 // // Question 3: Filter students who are 20 years old
 // // Your code here:
 
-// console.log(students.filter(student => student.age === 20));
+console.log(students.filter(student => student.age === 20));
 
 // // Question 4: Filter users who are active
 // // Your code here:
 
-// console.log(users.filter( user => user.isActive === true));
+console.log(users.filter( user => user.isActive === true));
 
 // Question 5: Filter products with price less than 500
 // Your code here:
 
 
-// console.log(worksheetProducts.filter(product => product.price < 5000));
+console.log(worksheetProducts.filter(product => product.price < 5000));
 
 // ============================================
 // LEVEL 2: MEDIUM (Multiple Conditions)
@@ -106,17 +106,17 @@ const users: User[] = [
 // Question 6: Filter students who have a scholarship AND grade above 85
 // Your code here:
 
-// console.log(students.filter(student => student.studiesBackend === true && student.grade >= 85));
+console.log(students.filter(student => student.studiesBackend === true && student.grade >= 85));
 // Question 7: Filter products that are in stock AND have rating above 4.5
 // Your code here:
 
-// console.log(worksheetProducts.filter(product => product.inStock === true && product.rating > 4.5));
+console.log(worksheetProducts.filter(product => product.inStock === true && product.rating > 4.5));
 
 // Question 8: Filter users with email ending in "example.com" AND are active
 // Hint: Use .endsWith() method
 // Your code here:
 
-// console.log(users.filter( user => user.isActive === true && user.email.endsWith( "@example.com")));
+console.log(users.filter( user => user.isActive === true && user.email.endsWith( "@example.com")));
 
 // Question 9: Filter students who are either 19 OR 20 years old
 // Your code here:
@@ -124,12 +124,12 @@ const users: User[] = [
 
 
 
-// console.log( students.filter(student => student.age === 19 || student.age ===20));
+console.log( students.filter(student => student.age === 19 || student.age ===20));
 
 // Question 10: Filter products that are either out of stock OR priced above 600
 // Your code here:
 
-// console.log(worksheetProducts.filter(product => product.inStock === false || product.price > 6000));
+console.log(worksheetProducts.filter(product => product.inStock === false || product.price > 6000));
 
 // ============================================
 // LEVEL 3: HARD (Complex Logic)
@@ -138,24 +138,24 @@ const users: User[] = [
 // Question 11: Filter students who have scholarship, are 20 or older, and grade is NOT below 80
 // Your code here:
 
-// console.log(students.filter(student => student.age >= 20 && student.grade >= 80));
+console.log(students.filter(student => student.age >= 20 && student.grade >= 80));
 
 // Question 12: Filter products that are good deals (in stock, price < 500, rating > 4.5)
 // Your code here:
 
-// console.log(worksheetProducts.filter(product => product.inStock === true && product.price > 5000 && product.rating > 4.5));
+console.log(worksheetProducts.filter(product => product.inStock === true && product.price > 5000 && product.rating > 4.5));
 
 // Question 13: Filter users who logged in during January 2024 (lastLogin starts with "2024-01")
 // Hint: Use .startsWith() method
 // Your code here:
 
-// console.log(users.filter( user => user.lastLogin.startsWith("2024-01")));
+console.log(users.filter( user => user.lastLogin.startsWith("2024-01")));
 
 // Question 14: Filter students whose names contain the letter "a" (case-insensitive)
 // Hint: Use .toLowerCase() and .includes()
 // Your code here:
 
-// console.log(students.filter( student => student.name.toLowerCase().includes("a") ));
+console.log(students.filter( student => student.name.toLowerCase().includes("a") ));
 
 // ============================================
 // BONUS CHALLENGE
@@ -166,6 +166,6 @@ const users: User[] = [
 // Hint: Combine filter() and sort()
 // Your code here:
 
-// const getScholarshipStudents = (student: Student[], grade: number) => student.filter(x => x.grade >= grade).sort((a, b)=> b.grade - a.grade) ;
+const getScholarshipStudents = (student: Student[], grade: number) => student.filter(x => x.grade >= grade).sort((a, b)=> b.grade - a.grade) ;
 
-// console.log(getScholarshipStudents(students, 85));
+console.log(getScholarshipStudents(students, 85));

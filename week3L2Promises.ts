@@ -20,11 +20,7 @@
 //         console.log(error)
 //     });
 
-
-
 //-------------------
-
-
 type Drink = {
     idDrink: string;
     strDrink: string;
@@ -36,8 +32,6 @@ type Drink = {
 type DrinkResponse = {
    drinks: Drink[];
 };
-
-
 
 const flipcoin = (): Promise<"Win"> => {
     return new Promise((resolve, reject)=> {

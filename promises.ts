@@ -19,7 +19,6 @@
 
 // ---- 2 ----
 
-
 type AdviceResponse = {
    slip: {
      id: number;

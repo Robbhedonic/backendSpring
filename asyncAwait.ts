@@ -1,7 +1,5 @@
-
 // tsc asyncAwait.ts
 // node asyncAwait.js
-
 // const flipCoin = () =>{
 //     return new Promise((resolve, reject)=>{
 //         let result = Math.random();
@@ -12,8 +10,6 @@
 //         }
 //     });
 // };
-
-
 // Part 1: Refactoring Your Own Promise with Async/Await  
 const flipCoin = () => {
     return new Promise((resolve, reject) => {
@@ -22,17 +18,15 @@ const flipCoin = () => {
     })
 }
 
-const coinFlipResult = async () => {
-    try{
-        const result = await flipCoin();
-        console.log(result);
-    } 
-    catch(error) {
-        console.log(error);
-    }
-}
-
-coinFlipResult();
+// const coinFlipResult = async () => {
+//     try{
+//         const result = await flipCoin();
+//         console.log(result);
+//     } 
+//     catch(error) {
+//         console.log(error);
+//     }
+// }
 
 
 // Part 2: Fetching Data from an API with Async/Await  
@@ -61,4 +55,20 @@ const fetchAdvice = async (): Promise<void> => {
     }
 }
 
+
+const coinFlipResult = async (): Promise<void> => {
+    try{
+        await flipCoin();
+        await fetchAdvice();
+
+    } catch(error){
+        console.log(error)
+    }
+
+};
+coinFlipResult();
 fetchAdvice();
+
+
+
+

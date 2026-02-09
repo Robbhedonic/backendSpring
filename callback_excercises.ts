@@ -312,7 +312,7 @@ If the number of true returns is equal to the number of false returns, majority 
  */
 
 
-function majority(array: any[], callback: (item:any)=> boolean): boolean{
+function majority<T>(array: T[], callback: (item:T)=> boolean): boolean{
     let trueCount = 0;
     let falseCount = 0;
 
@@ -345,9 +345,9 @@ console.log(majority([2, 3, 4, 5], isOdd));
 // /* Create a function prioritize that accepts an array and a callback. The callback will return either true or false. prioritize will iterate through the array and perform the callback on each element, and return a new array, where all the elements that yielded a return value of true come first in the array, and the rest of the elements come second. */
 
 
-function prioritize(array: any, callback: any) {
-  const trueArr = [];
-  const falseArr = [];
+function prioritize<T>(array: T[], callback:(item: T) => boolean): T[] {
+  const trueArr : T[]= [];
+  const falseArr : T[]= [];
 
   for (const item of array) {
     if (callback(item)) {
@@ -362,7 +362,7 @@ function prioritize(array: any, callback: any) {
 
 
 
-const startsWithS = function (str: any) {
+const startsWithS = function (str: string) {
   return str[0] === "s" || str[0] === "S";
 };
 console.log(
@@ -400,7 +400,7 @@ function countBy<T>(
 
 
 console.log(
-  countBy([1, 2, 3, 4, 5], function (num: any) {
+  countBy([1, 2, 3, 4, 5], function (num: number) {
     if (num % 2 === 0) return "even";
     else return "odd";
   })
@@ -437,7 +437,7 @@ function groupBy<T>(
 
 
 const decimals = [1.3, 2.1, 2.4];
-const floored = function (num: any) {
+const floored = function (num: number) {
   return Math.floor(num);
 };
 console.log(groupBy(decimals, floored));
@@ -476,7 +476,7 @@ const sunny = {
   dee: "bird",
   frank: "warthog",
 };
-const startsWithBird = function (str: any) {
+const startsWithBird = function (str: string) {
   return str.slice(0, 4).toLowerCase() === "bird";
 };
 console.log(goodKeys(sunny, startsWithBird));

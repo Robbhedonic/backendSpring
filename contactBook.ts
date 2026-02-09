@@ -6,7 +6,7 @@ interface Contact{
     tags?: string[];
 }
 
-let contacts: Contact[] = [];
+const contacts: Contact[] = [];
 
 // Function 1: addContact(contact: Contact) 
 // Takes a contact as a parameter
@@ -97,10 +97,10 @@ function removeById(id: number){
 // addContact({ id: 2, name: "Carlos Mendoza", phone: "12345678" });
 // addContact({ id: 3, name: "Ana López", email: "ana.lopez@gmail.com" });
 
-// // List all contacts
+// List all contacts
 // listContacts();
 
-// // Search for a contact by name
+// Search for a contact by name
 // const foundContacts = findByName("Ediberta");
 // console.log("Search results:");
 // foundContacts.forEach(contact => {
@@ -108,18 +108,18 @@ function removeById(id: number){
 // });
 
 // // Remove a contact by ID
-// removeById(2);
+removeById(2);
 
 // // List all contacts again
 // listContacts();
 
 // // STEP 6: Run it
 
-// // Checklist
-// // All 4 functions written
-// // Added 3 contacts
-// // Listed all contacts
-// // Searched by name
-// // Removed one contact
-// // Listed again (should show 2 contacts)
-// // No TypeScript errors
+// Checklist
+// All 4 functions written
+// Added 3 contacts
+// Listed all contacts
+// Searched by name
+// Removed one contact
+// Listed again (should show 2 contacts)
+// No TypeScript errors

@@ -1,5 +1,3 @@
-// tsc asyncAwait.ts
-// node asyncAwait.js
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -37,6 +35,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
+// tsc asyncAwait.ts
+// node asyncAwait.js
 // const flipCoin = () =>{
 //     return new Promise((resolve, reject)=>{
 //         let result = Math.random();
@@ -54,28 +54,8 @@ var flipCoin = function () {
         outcome ? resolve("You win!") : reject("You lose!");
     });
 };
-var coinFlipResult = function () { return __awaiter(_this, void 0, void 0, function () {
-    var result, error_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, flipCoin()];
-            case 1:
-                result = _a.sent();
-                console.log(result);
-                return [3 /*break*/, 3];
-            case 2:
-                error_1 = _a.sent();
-                console.log(error_1);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
-    });
-}); };
-coinFlipResult();
 var fetchAdvice = function () { return __awaiter(_this, void 0, void 0, function () {
-    var response, data, error_2;
+    var response, data, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -92,11 +72,33 @@ var fetchAdvice = function () { return __awaiter(_this, void 0, void 0, function
                 console.log(data.slip.advice);
                 return [3 /*break*/, 4];
             case 3:
-                error_2 = _a.sent();
-                console.log("Error fetching advice:", error_2);
+                error_1 = _a.sent();
+                console.log("Error fetching advice:", error_1);
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
         }
     });
 }); };
+var coinFlipResult = function () { return __awaiter(_this, void 0, void 0, function () {
+    var error_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 3, , 4]);
+                return [4 /*yield*/, flipCoin()];
+            case 1:
+                _a.sent();
+                return [4 /*yield*/, fetchAdvice()];
+            case 2:
+                _a.sent();
+                return [3 /*break*/, 4];
+            case 3:
+                error_2 = _a.sent();
+                console.log(error_2);
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
+coinFlipResult();
 fetchAdvice();
